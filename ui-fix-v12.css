@@ -1,0 +1,13 @@
+html{-webkit-text-size-adjust:100%}
+.top h1,.active-magician,.magic-level-static span,.magic-level-static b,.level-subject-note,.mission span,.primary,.secondary,.btn{word-break:keep-all;overflow-wrap:normal}
+.magic-level-static b{white-space:nowrap}
+@media(max-width:560px){
+  .top h1{font-size:19px;white-space:nowrap}
+  .active-magician{font-size:14px;white-space:normal}
+  .magic-level-static{min-width:0}
+  .magic-level-static span{font-size:13px;white-space:nowrap}
+  .magic-level-static b{font-size:17px;white-space:nowrap}
+  .level-subject-note{font-size:13px}
+  .mission span{font-size:18px}
+  .primary,.secondary,.btn{white-space:nowrap;font-size:15px}
+}
