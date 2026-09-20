@@ -13,6 +13,7 @@ function esc(s){return String(s||'').replace(/[&<>\"]/g,function(m){return{'&':'
 function fail(e){app.innerHTML='<main class="app"><div class="card"><h2>頁面載入失敗</h2><p>'+esc(e&&e.message?e.message:e)+'</p><p><a href="./?v=magic35">返回入口</a></p></div></main>'}
 function syncMagician(){try{var q=new URLSearchParams(location.search),id=q.get('student')||'',stage=q.get('stage')||'elementary',P='bitepomodoro.github.portal.';localStorage.setItem(P+'studentId',JSON.stringify(id));var arr=JSON.parse(localStorage.getItem(P+'students')||'[]');if(!Array.isArray(arr))arr=[];var x=arr.find(function(s){return s.id===id});if(x)x.stage=stage;else if(id)arr.push({id:id,name:id,stage:stage,character:id});localStorage.setItem(P+'students',JSON.stringify(arr))}catch(e){}}
 function getText(url){return fetch(url,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('載入 '+url+' 失敗：HTTP '+r.status);return r.text()})}
+if(!['qa-A','qa-B'].includes(new URLSearchParams(location.search).get('student'))){fail(new Error('此公開預覽站僅供虛構 qa-A／qa-B 測試，請從預覽首頁選擇角色。'));return;}
 syncMagician();
 window.addEventListener('magic40-storage-conflict',function(){
   try{
