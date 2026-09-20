@@ -1,0 +1,31 @@
+name: magic40 candidate Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble test-only static site
+        run: |
+          mkdir -p _site
+          cp index.html study.html magic40-storage-guard.js magic40-after-base.js magic40-backup.js _site/
+          touch _site/.nojekyll
+          python3 scripts/fetch-pinned-assets.py
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: publish
+        uses: actions/deploy-pages@v4
