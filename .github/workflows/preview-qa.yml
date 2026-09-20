@@ -1,0 +1,24 @@
+name: magic40 candidate preview WebKit QA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble SHA-pinned static preview
+        run: |
+          mkdir -p _site
+          cp index.html study.html magic40-storage-guard.js magic40-after-base.js magic40-backup.js _site/
+          python3 scripts/fetch-pinned-assets.py
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-save playwright@1.55.0
+      - run: npx playwright install --with-deps webkit
+      - run: node scripts/preview-qa.mjs
