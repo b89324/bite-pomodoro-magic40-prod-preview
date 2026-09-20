@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=yes"><meta name="theme-color" content="#285a3d"><meta name="robots" content="noindex,nofollow,noarchive"><title>咬一口蕃茄鐘｜魔法學習主畫面</title>
+<link rel="stylesheet" href="./github-app.css?v=20260919-magic38-gallery1"><link rel="stylesheet" href="./magic-patch.css?v=20260919-magic38-gallery1"><link rel="stylesheet" href="./weekly-report.css?v=20260919-magic38-gallery1"><link rel="stylesheet" href="./ui-fix-v12.css?v=20260919-magic38-gallery1"><link rel="stylesheet" href="./calendar-multi-patch.css?v=20260919-magic38-gallery1"><link rel="stylesheet" href="./requested-fixes.css?v=20260919-magic38-gallery1"><link rel="stylesheet" href="./magic16-patch.css?v=20260919-magic38-gallery1">
+<link rel="stylesheet" href="./calendar-import-magic36.css?v=20260919-magic38-gallery1">
+<link rel="stylesheet" href="./magic38-medals.css?v=20260919-magic38-gallery1">
+</head><body><main id="app"><div class="app"><div class="card"><h2>正在啟動咬一口蕃茄鐘…</h2><p>Safari 安全載入中。</p></div></div></main>
+<script>
+(function(){
+'use strict';var app=document.getElementById('app');
+function esc(s){return String(s||'').replace(/[&<>\"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[m]})}
+function fail(e){app.innerHTML='<main class="app"><div class="card"><h2>頁面載入失敗</h2><p>'+esc(e&&e.message?e.message:e)+'</p><p><a href="./?v=magic35">返回入口</a></p></div></main>'}
+function syncMagician(){try{var q=new URLSearchParams(location.search),id=q.get('student')||'',stage=q.get('stage')||'elementary',P='bitepomodoro.github.portal.';localStorage.setItem(P+'studentId',JSON.stringify(id));var arr=JSON.parse(localStorage.getItem(P+'students')||'[]');if(!Array.isArray(arr))arr=[];var x=arr.find(function(s){return s.id===id});if(x)x.stage=stage;else if(id)arr.push({id:id,name:id,stage:stage,character:id});localStorage.setItem(P+'students',JSON.stringify(arr))}catch(e){}}
+function getText(url){return fetch(url,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('載入 '+url+' 失敗：HTTP '+r.status);return r.text()})}
+syncMagician();
+window.addEventListener('magic40-storage-conflict',function(){
+  try{
+    var old=document.getElementById('magic40-conflict-banner');
+    if(old)return;
+    var box=document.createElement('div');
+    box.id='magic40-conflict-banner';
+    box.setAttribute('role','alert');
+    box.style.cssText='position:fixed;left:12px;right:12px;top:12px;z-index:99999;background:#fff3cd;color:#5c4300;border:2px solid #d6a700;border-radius:12px;padding:12px 14px;box-shadow:0 6px 18px rgba(0,0,0,.18);font:600 15px/1.45 -apple-system,BlinkMacSystemFont,"Noto Sans TC",sans-serif';
+    var msg=document.createElement('div');
+    msg.textContent='這個頁面的資料已在其他分頁更新，為避免覆蓋，這次儲存未執行。請重新整理後再操作。';
+    var btn=document.createElement('button');
+    btn.type='button';btn.textContent='重新整理';
+    btn.style.cssText='margin-top:8px;padding:8px 14px;border-radius:9px;border:1px solid #7a5b00;background:#fff;color:#5c4300;font-weight:700';
+    btn.onclick=function(){location.reload();};
+    box.appendChild(msg);box.appendChild(btn);document.body.appendChild(box);
+  }catch(_){}
+});
+Promise.all([getText('./magic40-storage-guard.js?v=20260919-magic40-prod1'),getText('./github-app.js?v=20260919-magic38-gallery1'),getText('./magic40-after-base.js?v=20260919-magic40-prod1'),getText('./magic-patch.js?v=20260919-magic38-gallery1'),getText('./weekly-patch.js?v=20260919-magic38-gallery1'),getText('./ui-fix-v12.js?v=20260919-magic38-gallery1'),getText('./calendar-multi-patch.js?v=20260919-magic38-gallery1'),getText('./requested-fixes.js?v=20260919-magic38-gallery1'),getText('./magic16-patch.js?v=20260919-magic38-gallery1'),getText('./calendar-import-magic36.js?v=20260919-magic38-gallery1'),getText('./magic38-medals.js?v=20260919-magic38-gallery1'),getText('./magic40-backup.js?v=20260919-magic40-prod1')]).then(function(parts){var code='"use strict";\n'+parts[0]+'\n'+parts[1]+'\n'+parts[2]+'\n'+parts[3]+'\n'+parts[4]+'\n'+parts[5]+'\n'+parts[6]+'\n'+parts[7]+'\n'+parts[8]+'\n'+parts[9]+'\n'+parts[10]+'\n'+parts[11]+'\n//# sourceURL=bite-pomodoro-magic40-production-candidate.js';var run=new Function(code);run()}).catch(fail);
+})();
+</script></body></html>
